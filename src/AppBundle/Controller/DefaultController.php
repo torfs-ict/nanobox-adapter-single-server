@@ -17,4 +17,11 @@ class DefaultController extends ApiController
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/meta", name="meta")
+     */
+    public function metaAction() {
+        return $this->json($this->getJson('meta.json'));
+    }
 }
