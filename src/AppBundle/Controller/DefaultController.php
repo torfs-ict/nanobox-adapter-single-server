@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\ServerInfo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends ApiController
 {
@@ -35,5 +36,16 @@ class DefaultController extends ApiController
         $json[0]->plans[0]->specs[0]->ram = ServerInfo::getMemoryAmount();
         $json[0]->plans[0]->specs[0]->disk = ServerInfo::getStorageAmount();
         return $this->json($json);
+    }
+
+    /**
+     * @Route("/verify", name="verify", methods={"POST"})
+     */
+    public function verifyAction() {
+        if ($this->verifyAccessToken()) {
+            return new Response();
+        } else {
+            return $this->json(['errors' => ['Invalid access token']], 400);
+        }
     }
 }
