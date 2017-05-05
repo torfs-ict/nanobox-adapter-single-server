@@ -23,7 +23,7 @@ abstract class ApiController extends Controller
     }
 
     protected function verifyAccessToken() {
-        $wanted = $this->container->getParameter('access_token');
+        $wanted = $this->container->getParameter('nanobox.access_token');
         $given = $this->container->get('request_stack')->getCurrentRequest()->headers->get('Auth-Access-Token');
         return $given == $wanted;
     }
