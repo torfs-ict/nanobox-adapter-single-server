@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class KeysController extends ApiController
 {
@@ -29,6 +30,18 @@ class KeysController extends ApiController
         file_put_contents($filename, $append, FILE_APPEND);
 
         return $this->json(['id' => $name], 201);
+    }
+
+    /**
+     * @Route("/keys/{id}", methods={"DELETE"})
+     * @param string $id
+     * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
+     */
+    public function deleteAction(string $id) {
+        if (!$this->verifyAccessToken()) {
+            return $this->throwError('Access was denied');
+        }
+        return new Response();
     }
 
     /**
