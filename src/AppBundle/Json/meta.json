@@ -1,0 +1,15 @@
+{
+  "id":                "single-server",
+  "name":              "Single server",
+  "server_nick_name":  "Server",
+  "default_region":    "local",
+  "default_size":      "standard",
+  "default_plan":      "standard",
+  "ssh_auth_method":   "key",
+  "can_reboot":        true,
+  "can_rename":        false,
+  "credential_fields": [
+    { "key": "access-token", "label": "Access token" }
+  ],
+  "instructions": "TODO"
+}

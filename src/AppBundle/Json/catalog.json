@@ -1,0 +1,15 @@
+[
+  {
+    "id":    "local",
+    "name":  "Local server",
+    "plans": [
+      {
+        "id": "standard",
+        "name": "Standard configuration",
+        "specs": [
+          {"id": "standard", "ram": 512, "cpu": 1, "disk": 20, "transfer": "unknown", "dollars_per_hr": "unknown", "dollars_per_mo": "unknown"}
+        ]
+      }
+    ]
+  }
+]
