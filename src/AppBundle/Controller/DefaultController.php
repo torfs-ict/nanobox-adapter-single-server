@@ -24,7 +24,10 @@ class DefaultController extends ApiController
      * @Route("/meta", name="meta")
      */
     public function metaAction() {
-        return $this->json($this->getJson('meta.json'));
+        $json = $this->getJson('meta.json');
+        $json->external_iface = $this->container->getParameter('nanobox.external_iface');
+        $json->internal_iface = $this->container->getParameter('nanobox.internal_iface');
+        return $this->json($json);
     }
 
     /**

@@ -8,6 +8,8 @@
   "ssh_auth_method":   "key",
   "ssh_key_method":    "reference",
   "bootstrap_script":  "https://s3.amazonaws.com/tools.nanobox.io/bootstrap/ubuntu.sh",
+  "external_iface":    "",
+  "internal_iface":    "",
   "can_reboot":        true,
   "can_rename":        false,
   "credential_fields": [
