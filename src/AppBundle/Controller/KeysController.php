@@ -10,7 +10,7 @@ class KeysController extends ApiController
     /**
      * @Route("/keys", name="keys", methods={"POST"})
      */
-    public function indexAction(Request $request)
+    public function createAction(Request $request)
     {
         if (!$this->verifyAccessToken()) {
             return $this->throwError('Access was denied');
