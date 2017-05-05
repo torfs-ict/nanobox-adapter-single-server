@@ -27,6 +27,7 @@ class DefaultController extends ApiController
         $json = $this->getJson('meta.json');
         $json->external_iface = $this->container->getParameter('nanobox.external_iface');
         $json->internal_iface = $this->container->getParameter('nanobox.internal_iface');
+        $json->ssh_user = $this->container->getParameter('nanobox.ssh_user');
         return $this->json($json);
     }
 
