@@ -18,6 +18,10 @@ abstract class ApiController extends Controller
         return $json;
     }
 
+    protected function throwError($message, $status = 400) {
+        return $this->json(['errors' => [$message]], $status);
+    }
+
     protected function verifyAccessToken() {
         $wanted = $this->container->getParameter('access_token');
         $given = $this->container->get('request_stack')->getCurrentRequest()->headers->get('Auth-Access-Token');
