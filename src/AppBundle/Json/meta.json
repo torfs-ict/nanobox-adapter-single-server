@@ -6,6 +6,7 @@
   "default_size":      "standard",
   "default_plan":      "standard",
   "ssh_auth_method":   "key",
+  "ssh_key_method":    "reference",
   "can_reboot":        true,
   "can_rename":        false,
   "credential_fields": [
