@@ -20,6 +20,6 @@ parameters:
 
     nanobox.access_token: 12345
     nanobox.external_iface: eth0,
-    nanobox.internal_iface: eth0:0,
+    nanobox.internal_iface: eth0:0
     nanobox.external_ip: 0.0.0.0
     nanobox.internal_ip: 0.0.0.0
