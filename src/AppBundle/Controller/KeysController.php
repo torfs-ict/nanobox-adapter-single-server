@@ -34,6 +34,7 @@ class KeysController extends ApiController
     /**
      * @Route("/keys/{id}", name="keys-query", methods={"GET"})
      * @param string $id
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function queryAction(string $id) {
         if (!$this->verifyAccessToken()) {
