@@ -76,6 +76,10 @@ class KeysController extends ApiController
                 if ($match[1] == $id) $key = $match[2];
             }
         }
-        return $this->json(['id' => $id, 'name' => $id, 'key' => $key], 201);
+        if (empty($key)) {
+            $this->throwError('Unable to find the requested key.');
+        } else {
+            return $this->json(['id' => $id, 'name' => $id, 'key' => $key], 201);
+        }
     }
 }
