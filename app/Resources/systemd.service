@@ -2,8 +2,7 @@
 Description=Nanobox.io endpoint adapter
 
 [Service]
-ExecStart=php /srv/nanobox-endpoint/bin/console server:start
-ExecStop=php /srv/nanobox-endpoint/bin/console server:start
+ExecStart=/usr/bin/php /srv/nanobox-endpoint/bin/console server:run --env=prod --no-debug
 Restart=on-failure
 
 [Install]
