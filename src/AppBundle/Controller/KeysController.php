@@ -41,6 +41,16 @@ class KeysController extends ApiController
         if (!$this->verifyAccessToken()) {
             return $this->throwError('Access was denied');
         }
+        $keys = file_get_contents($this->getAuthorizedKeysFilename());
+        $ret = trim(preg_replace_callback('/^# Nanobox key (.*)\n(.*)$/m', function($matches) use ($id) {
+            $keyId = $matches[1];
+            if ($keyId == $id) {
+                return '';
+            } else {
+                return $matches[0];
+            }
+        }, $keys));
+        file_put_contents($this->getAuthorizedKeysFilename(), $ret);
         return new Response();
     }
 

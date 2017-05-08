@@ -20,5 +20,4 @@ systemctl start nanobox-endpoint
 
 ## TODO
 
-- Delete SSH key (actually do it)
 - Reboot server (actually do it)
