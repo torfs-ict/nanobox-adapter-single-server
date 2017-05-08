@@ -77,7 +77,7 @@ class KeysController extends ApiController
             }
         }
         if (empty($key)) {
-            return $this->throwError('Unable to find the requested key.');
+            return $this->throwError('Unable to find the requested key.', 404);
         } else {
             return $this->json(['id' => $id, 'name' => $id, 'key' => $key], 201);
         }
