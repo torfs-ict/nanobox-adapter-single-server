@@ -13,8 +13,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y php7.0-curl php7.0-zip php7.0-xml
 composer install
-ln -s /srv/nanobox-endpoint/app/Resources/systemd.service /etc/systemd/system/nanobox-endpoint.service
+cp app/Resources/systemd.service /etc/systemd/system/nanobox-endpoint.service
 systemctl daemon-reload
+systemctl enable nanobox-endpoint
 systemctl start nanobox-endpoint
 ```
 
