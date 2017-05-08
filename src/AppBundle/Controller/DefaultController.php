@@ -63,8 +63,8 @@ class DefaultController extends ApiController
         $ip = $this->container->getParameter('nanobox.external_ip');
         $port = $this->container->getParameter('endpoint.port');
         $content = file_get_contents($url);
-        $content .= "\n# Adjust the firewall to keep our endpoint available\n";
-        $content .= sprintf('iptables -A INPUT -p tcp -s %s --dport %d -j ACCEPT', $ip, $port);
+        $content .= "\n# Restart our endpoint\n";
+        $content .= sprintf('systemctl restart nanobox-endpoint.service', $ip, $port);
         return new Response(
             $content, 200, ['Content-Type' => 'text/plain']
         );
