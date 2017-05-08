@@ -1,0 +1,10 @@
+[Unit]
+Description=Nanobox.io endpoint adapter
+
+[Service]
+ExecStart=php /srv/nanobox-endpoint/bin/console server:start
+ExecStop=php /srv/nanobox-endpoint/bin/console server:start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
