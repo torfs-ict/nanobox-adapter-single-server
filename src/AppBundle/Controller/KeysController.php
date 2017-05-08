@@ -32,7 +32,6 @@ class KeysController extends ApiController
         $this->get('logger')->debug($request->getContent());
         $append = sprintf("\n# Nanobox key %s\n%s", $id, $key);
         $filename = $this->getAuthorizedKeysFilename();
-        @mkdir(dirname($filename), 0700, true);
         file_put_contents($filename, $append, FILE_APPEND);
 
         return $this->json(['id' => $id], 201);
