@@ -6,6 +6,7 @@ use AppBundle\ServerInfo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends ApiController
 {
@@ -27,6 +28,7 @@ class DefaultController extends ApiController
         $json = $this->getJson('meta.json');
         $json->external_iface = $this->container->getParameter('nanobox.external_iface');
         $json->internal_iface = $this->container->getParameter('nanobox.internal_iface');
+        $json->bootstrap_script = $this->generateUrl('bootstrap', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $json->ssh_user = $this->container->getParameter('nanobox.ssh_user');
         return $this->json($json);
     }
@@ -51,5 +53,20 @@ class DefaultController extends ApiController
         } else {
             return $this->json(['errors' => ['Invalid access token']], 400);
         }
+    }
+
+    /**
+     * @Route("/bootstrap.sh", name="bootstrap", methods={"GET"})
+     */
+    public function bootstrapAction() {
+        $url = $this->container->getParameter('nanobox.bootstrap_script');
+        $ip = $this->container->getParameter('nanobox.external_ip');
+        $port = $_SERVER['SERVER_PORT'];
+        $content = file_get_contents($url);
+        $content .= "\n# Adjust the firewall to keep our endpoint available\n";
+        $content .= sprintf('iptables -A INPUT -p tcp -s %s --dport %d -j ACCEPT', $ip, $port);
+        return new Response(
+            $content, 200, ['Content-Type' => 'text/plain']
+        );
     }
 }
