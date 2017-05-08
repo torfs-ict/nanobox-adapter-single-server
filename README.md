@@ -20,4 +20,3 @@ systemctl start nanobox-endpoint
 
 ## TODO
 
-- Reboot server (actually do it)

@@ -49,6 +49,7 @@ class ServersController extends ApiController
         if (!$this->verifyAccessToken()) {
             return $this->throwError('Access was denied');
         }
+        exec("nohup reboot > /dev/null 2>&1 &");
         return new Response();
     }
 }
