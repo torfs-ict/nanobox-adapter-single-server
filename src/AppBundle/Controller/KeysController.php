@@ -10,7 +10,12 @@ class KeysController extends ApiController
 {
     protected function getAuthorizedKeysFilename() {
         $user = posix_getpwuid(posix_getuid());
-        return sprintf('%s/.ssh/authorized_keys', $user['dir']);
+        $filename = sprintf('%s/.ssh/authorized_keys', $user['dir']);
+        if (!file_exists($filename)) {
+            @mkdir(dirname($filename), 0700, true);
+            touch($filename);
+        }
+        return $filename;
     }
 
     /**
