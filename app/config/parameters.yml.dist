@@ -25,3 +25,5 @@ parameters:
     nanobox.internal_ip: 0.0.0.0
     nanobox.bootstrap_script: https://s3.amazonaws.com/tools.nanobox.io/bootstrap/ubuntu.sh
     nanobox.ssh_user: root
+
+    endpoint.port: 8000
