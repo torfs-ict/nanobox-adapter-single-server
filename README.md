@@ -20,3 +20,5 @@ systemctl start nanobox-endpoint
 
 ## TODO
 
+- Make sure the iptables config is saved across reboots
+- The systemd service won't start on boot
