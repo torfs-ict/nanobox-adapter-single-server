@@ -8,11 +8,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ServerStartCommand extends BaseServerStartCommand
 {
+    use IpTablesTrait;
+
     /**
      * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->openFirewall();
         $input->setOption('port', $this->getContainer()->getParameter('endpoint.port'));
         $input->setArgument('address', $this->getContainer()->getParameter('nanobox.external_ip'));
         return parent::execute($input, $output);
