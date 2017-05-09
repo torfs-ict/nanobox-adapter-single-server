@@ -7,3 +7,8 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    request_listener:
+      class: AppBundle\EventListener\LogRequestListener
+      arguments: ['@kernel', %endpoint.log_request%]
+      tags:
+        - { name: kernel.event_listener, event: kernel.terminate, method: onKernelTerminate }

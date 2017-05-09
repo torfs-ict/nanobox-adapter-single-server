@@ -27,3 +27,4 @@ parameters:
     nanobox.ssh_user: root
 
     endpoint.port: 8000
+    endpoint.log_request: false
