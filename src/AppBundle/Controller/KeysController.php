@@ -26,15 +26,15 @@ class KeysController extends ApiController
         if (!$this->verifyAccessToken()) {
             return $this->throwError('Access was denied');
         }
-        $id = $request->get('id');
+        $name = $request->get('name');
         $key = $request->get('key');
 
         $this->get('logger')->debug($request->getContent());
-        $append = sprintf("\n# Nanobox key %s\n%s", $id, $key);
+        $append = sprintf("\n# Nanobox key %s\n%s", $name, $key);
         $filename = $this->getAuthorizedKeysFilename();
         file_put_contents($filename, $append, FILE_APPEND);
 
-        return $this->json(['id' => $id], 201);
+        return $this->json(['id' => $name], 201);
     }
 
     /**
