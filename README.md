@@ -1,9 +1,15 @@
-nanobox-adapter-single-server
-=============================
+# Single server adapter
 
-A Symfony project created on April 29, 2017, 6:58 am.
+## Description
 
-# Installation process
+Custom hosting endpoint adapter for Nanobox. We use the Symfony built-in server to run
+as it's actually a quite simple app, and we don't want to interfere with any
+Nanobox services.
+
+## Installation process
+
+Install a basic Ubuntu server, with only the SSH server package selected. After this, 
+follow the procedure below to set up the endpoint adapter.
 
 ```bash
 sudo -s
@@ -18,7 +24,3 @@ systemctl daemon-reload
 systemctl enable nanobox-endpoint
 systemctl start nanobox-endpoint
 ```
-
-## TODO
-
-- Check if deleting keys works
