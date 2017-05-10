@@ -2,7 +2,7 @@
 
 ## Description
 
-Custom hosting endpoint adapter for Nanobox. If you have a single server available but still wish to use Nanobox for 
+Custom hosting endpoint adapter for [https://nanobox.io](Nanobox). If you have a single server available but still wish to use Nanobox for 
 deployment, this app will perform the communication with the Nanobox dashboard.
 
 We use the Symfony built-in server to run as it's actually a quite simple app, and we don't want to interfere with any
