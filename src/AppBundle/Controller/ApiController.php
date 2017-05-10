@@ -6,6 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 abstract class ApiController extends Controller
 {
+    /**
+     * Loads a predefined JSON file for a request.
+     *
+     * @param string $basename The basename of the JSON file e.g. "catalog.json"
+     * @return object The parsed JSON object
+     */
     protected function getJson($basename) {
         $path = $this->container->get('kernel')->locateResource('@AppBundle') . '/Json/' . $basename;
         if (!file_exists($path)) {
@@ -18,10 +24,23 @@ abstract class ApiController extends Controller
         return $json;
     }
 
+    /**
+     * Throws an error as wanted by Nanobox. The controller should return the response
+     * this method generates.
+     *
+     * @param string $message The error message.
+     * @param int $status The HTTP status code
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     protected function throwError($message, $status = 400) {
         return $this->json(['errors' => [$message]], $status);
     }
 
+    /**
+     * Checks if the authentication token passed through the HTTP header is valid.
+     *
+     * @return bool
+     */
     protected function verifyAccessToken() {
         $wanted = $this->container->getParameter('nanobox.access_token');
         $given = $this->container->get('request_stack')->getCurrentRequest()->headers->get('Auth-Access-Token');
