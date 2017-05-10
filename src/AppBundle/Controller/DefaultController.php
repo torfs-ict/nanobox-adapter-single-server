@@ -59,14 +59,22 @@ class DefaultController extends ApiController
      * @Route("/bootstrap.sh", name="bootstrap", methods={"GET"})
      */
     public function bootstrapAction() {
-        $url = $this->container->getParameter('nanobox.bootstrap_script');
-        $ip = $this->container->getParameter('nanobox.external_ip');
-        $port = $this->container->getParameter('endpoint.port');
-        $content = file_get_contents($url);
-        $content .= "\n# Restart our endpoint\n";
-        $content .= sprintf('systemctl restart nanobox-endpoint.service', $ip, $port);
-        return new Response(
-            $content, 200, ['Content-Type' => 'text/plain']
-        );
+        if ($this->isProvisioned()) {
+            return new Response(
+                '#!/bin/bash', 200, ['Content-Type' => 'text/plain']
+            );
+        } else {
+            $url = $this->container->getParameter('nanobox.bootstrap_script');
+            $ip = $this->container->getParameter('nanobox.external_ip');
+            $port = $this->container->getParameter('endpoint.port');
+            $content = file_get_contents($url);
+            $content .= "\n# Flag server as provisioned to our endpoint\n";
+            $content .= sprintf('touch "%s"', $this->getProvisionFlagFilename());
+            $content .= "\n# Restart our endpoint\n";
+            $content .= sprintf('systemctl restart nanobox-endpoint.service', $ip, $port);
+            return new Response(
+                $content, 200, ['Content-Type' => 'text/plain']
+            );
+        }
     }
 }

@@ -25,6 +25,24 @@ abstract class ApiController extends Controller
     }
 
     /**
+     * Returns the absolute path to the file which will flag the server as provisioned.
+     */
+    protected function getProvisionFlagFilename() {
+        return realpath(sprintf('%s/../var', $this->get('kernel')->getRootDir())) . DIRECTORY_SEPARATOR . 'provisioned.flag';
+    }
+
+    /**
+     * Checks if the server has already been provisioned by Nanobox.
+     *
+     * @return bool
+     */
+    protected function isProvisioned() {
+        $filename = $this->getProvisionFlagFilename();
+        clearstatcache(null, $filename);
+        return file_exists($filename);
+    }
+
+    /**
      * Throws an error as wanted by Nanobox. The controller should return the response
      * this method generates.
      *
