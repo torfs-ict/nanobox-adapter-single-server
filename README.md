@@ -1,5 +1,7 @@
 # Single server adapter
 
+## Deprecated! Project dropped in favor of the [https://github.com/torfs-ict/nanobox-adapter-ubuntu](Ubuntu adapter).
+
 ## Description
 
 Custom hosting endpoint adapter for [https://nanobox.io](Nanobox). If you have a single server available but still wish to use Nanobox for 
