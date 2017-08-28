@@ -1,10 +1,10 @@
 # Single server adapter
 
-## Deprecated! Project dropped in favor of the [https://github.com/torfs-ict/nanobox-adapter-ubuntu](Ubuntu adapter).
+## Deprecated! Project dropped in favor of the [Ubuntu adapter](https://github.com/torfs-ict/nanobox-adapter-ubuntu).
 
 ## Description
 
-Custom hosting endpoint adapter for [https://nanobox.io](Nanobox). If you have a single server available but still wish to use Nanobox for 
+Custom hosting endpoint adapter for [Nanobox](https://nanobox.io). If you have a single server available but still wish to use Nanobox for 
 deployment, this app will perform the communication with the Nanobox dashboard.
 
 We use the Symfony built-in server to run as it's actually a quite simple app, and we don't want to interfere with any
